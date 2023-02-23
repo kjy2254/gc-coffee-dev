@@ -1,5 +1,6 @@
 package com.example.gccoffeedev.service;
 
+import com.example.gccoffeedev.dto.OrderItemDto;
 import com.example.gccoffeedev.entity.*;
 import com.example.gccoffeedev.repository.*;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,8 @@ public class Service {
 
 
     public Order createOrder(String email, String address, String postcode, List<OrderItem> orderItems) {
+
+
         Order order = new Order(
                 UUID.randomUUID(),
                 email,
@@ -40,10 +43,10 @@ public class Service {
         return productRepository.findAll();
     }
 
-    public Product createProduct(String productName, Category category, long price) {
-        var product = new Product(UUID.randomUUID(), productName, category, price);
-        return productRepository.save(product);
-    }
+//    public Product createProduct(String productName, Category category, long price) {
+//        var product = new Product(UUID.randomUUID(), productName, category, price);
+//        return productRepository.save(product);
+//    }
 
     public Product createProduct(String productName, Category category, long price, String description) {
         var product = new Product(UUID.randomUUID(), productName, category, price, description);

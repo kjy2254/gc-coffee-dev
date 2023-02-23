@@ -22,7 +22,6 @@ function App() {
         axios.get('http://localhost:8080/api/v1/products')
             .then(v => {
                 setProducts(v.data);
-                // console.log("products: ", products);
             })
     }, [])
 
@@ -35,7 +34,7 @@ function App() {
         if (items.length === 0) {
             alert("아이템을 추가해 주세요!");
         } else {
-            axios.post('http://localhost:8080/api/v1/orders', {
+            let orderDto = {
                 email: order.email,
                 address: order.address,
                 postcode: order.postcode,
@@ -43,9 +42,11 @@ function App() {
                     productId: v.productId,
                     category: v.category,
                     price: v.price,
-                    quantity: v.quantity
+                    quantity: v.count
                 }))
-            }).then(
+            }
+            console.log(orderDto);
+            axios.post('http://localhost:8080/api/v1/orders', orderDto).then(
                 v => alert("주문이 정상적으로 접수되었습니다."),
                 e => {
                     alert("서버 장애");
