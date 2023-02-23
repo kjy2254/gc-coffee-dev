@@ -22,6 +22,7 @@ public class Order {
     private String postcode;
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

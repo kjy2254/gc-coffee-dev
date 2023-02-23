@@ -4,6 +4,8 @@ import com.example.gccoffeedev.dto.OrderItemDto;
 import com.example.gccoffeedev.entity.*;
 import com.example.gccoffeedev.repository.*;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
@@ -12,15 +14,17 @@ import java.util.UUID;
 
 @org.springframework.stereotype.Service
 @AllArgsConstructor
+@NoArgsConstructor
 public class Service {
     @Autowired
-    private final OrderRepository orderRepository;
+    private OrderRepository orderRepository;
     @Autowired
-    private final ProductRepository productRepository;
+    private ProductRepository productRepository;
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
 
     public Order createOrder(String email, String address, String postcode, List<OrderItem> orderItems) {
-
 
         Order order = new Order(
                 UUID.randomUUID(),
@@ -32,7 +36,17 @@ public class Service {
                 LocalDateTime.now(),
                 LocalDateTime.now()
         );
-        return orderRepository.save(order);
+
+        Order save = orderRepository.save(order);
+
+        orderItems.forEach(v -> {
+            v.setOrder(order);
+            v.setCreatedAt(LocalDateTime.now());
+            v.setUpdatedAt(LocalDateTime.now());
+            orderItemRepository.save(v);
+        });
+
+        return save;
     }
 
     public List<Product> getProductsByCategory(Category category) {
