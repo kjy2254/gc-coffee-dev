@@ -1,5 +1,7 @@
 package com.example.gccoffeedev.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import org.springframework.util.Assert;
 

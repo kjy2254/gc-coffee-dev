@@ -1,16 +1,14 @@
 package com.example.gccoffeedev.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "orders")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +17,7 @@ import java.util.UUID;
 public class Order {
     @Id
     private UUID orderId;
-    private Email email;
+    private String email;
     private String address;
     private String postcode;
     @OneToMany(mappedBy = "order")

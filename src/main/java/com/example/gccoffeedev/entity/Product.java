@@ -1,22 +1,29 @@
 package com.example.gccoffeedev.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Entity(name = "products")
 public class Product {
     @Id
-    private final UUID productId;
+    private UUID productId;
     private String productName;
+    @Enumerated(EnumType.STRING)
     private Category category;
     private long price;
     private String description;
-    private final LocalDateTime createdAt;
+    private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public Product(UUID productId, String productName, Category category, long price) {
