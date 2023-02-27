@@ -1,11 +1,11 @@
 package com.example.gccoffeedev.service;
 
-import com.example.gccoffeedev.dto.OrderItemDto;
 import com.example.gccoffeedev.entity.*;
-import com.example.gccoffeedev.repository.*;
+import com.example.gccoffeedev.repository.OrderItemRepository;
+import com.example.gccoffeedev.repository.OrderRepository;
+import com.example.gccoffeedev.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
