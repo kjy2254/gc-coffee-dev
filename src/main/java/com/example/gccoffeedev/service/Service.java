@@ -57,6 +57,10 @@ public class Service {
         return productRepository.findAll();
     }
 
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
 //    public Product createProduct(String productName, Category category, long price) {
 //        var product = new Product(UUID.randomUUID(), productName, category, price);
 //        return productRepository.save(product);
